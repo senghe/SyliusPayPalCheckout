@@ -1,6 +1,6 @@
 <div class="item" {{ sylius_test_html_attribute('payment-item') }}>
     <div class="field">
-        <div class="ui radio checkbox" {{ sylius_test_html_attribute('payment-method-checkbox') }}>
+        <div class="ui radio checkbox" {{ sylius_test_html_attribute('payment-method-checkbox') }} data-gateway="{{ method.gatewayConfig.factoryName }}">
             {{ form_widget(form, sylius_test_form_attribute('payment-method-select')) }}
         </div>
     </div>
@@ -10,9 +10,6 @@
             <div class="description">
                 <p>{{ method.description }}</p>
             </div>
-        {% endif %}
-        {% if method.gatewayConfig.factoryName == 'sylius.pay_pal' %}
-            {{ render(controller('Sylius\\PayPalPlugin\\Controller\\PayPalButtonsController::renderPaymentPageButtonsAction', {'orderId': order.id})) }}
         {% endif %}
     </div>
 </div>
